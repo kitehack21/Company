@@ -21,7 +21,7 @@ class App extends Component {
           <Row>
             <Col xs={12} >
               <Route exact path="/" component={OverviewPage}/>
-              <Route path="/office" component={OfficesPage}/>
+              <Route path="/office/:id" component={OfficesPage}/>
             </Col>
           </Row>
         </Grid>
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
   return { auth };
 }
 
-export default connect(mapStateToProps, {  })(App);
+export default withRouter(connect(mapStateToProps, {  })(App));

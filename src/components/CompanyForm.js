@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import {API_URL_1} from '../supports/api-url/apiurl'
-import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { addCompany } from '../actions';
 
-class CompanyForm extends Component {      
+class CompanyForm extends Component {
+
+    onCompanyCreate() {
+        var data = {
+            name: this.refs.companyName.value,
+            address: this.refs.companyAddress.value,
+            revenue: this.refs.companyRevenue.value,
+            code: this.refs.companyPhoneCode.value,
+            phone: this.refs.companyPhoneNumber.value
+        }
+        this.props.addCompany(data);
+        this.reset()
+    }
+
+    reset() {
+        this.refs.companyName.value = '';
+        this.refs.companyAddress.value = '';
+        this.refs.companyRevenue.value = '';
+        this.refs.companyPhoneCode.value = '';
+        this.refs.companyPhoneNumber.value = '';
+    }
 
     renderHomePage() {
         return(
@@ -32,7 +51,7 @@ class CompanyForm extends Component {
                     </div>
                 </Row>
                 <Row className="row_margin">
-                    <input type="submit" className="btn btn-primary overview_button" value="Create"></input>
+                    <input type="submit" className="btn btn-primary overview_button" value="Create" onClick={()=>this.onCompanyCreate()}></input>
                 </Row>
             </Col>
         );
@@ -45,4 +64,4 @@ class CompanyForm extends Component {
     }
 }
 
-export default CompanyForm;
+export default connect(null, { addCompany })(CompanyForm);

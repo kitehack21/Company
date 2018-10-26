@@ -1,0 +1,20 @@
+{
+  "name": "cazemaniaapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-fileupload": "^1.0.0-alpha.1",
+    "moment": "^2.22.2",
+    "mysql": "github:mysqljs/mysql",
+    "nodemailer": "^4.6.8"
+  },
+  "description": ""
+}

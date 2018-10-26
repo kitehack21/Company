@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, FormControl } from 'react-bootstrap';
-import axios from 'axios';
-import {API_URL_1} from '../supports/api-url/apiurl'
-import { Link } from 'react-router-dom';
+import { Row, Col, FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { addOffice } from '../actions';
 
 class OfficeForm extends Component {
     
     renderCompanyList() {
+        var arrJSX = [];
+        this.props.comp.companies.map((item, index) => {
+            arrJSX.push(<option value={item.id}>{item.name}</option>)
+        })
+        return arrJSX;
 
+    }
+
+    onOfficeCreate() {
+        var data = {
+            company_id: this.inputCompany.value,
+            name: this.refs.officeName.value,
+            latitude: this.refs.officeLocationLat.value,
+            longitude: this.refs.officeLocationLon.value,
+            start_date: this.refs.officeDate.value
+        }
+        this.props.addOffice(data);
+        this.reset()
+    }
+
+    reset() {
+        this.inputCompany.value = '';
+        this.refs.officeName.value = '';
+        this.refs.officeLocationLat.value = '';
+        this.refs.officeLocationLon.value = '';
+        this.refs.officeDate.value = '';
     }
 
     renderHomePage() {
@@ -27,16 +51,17 @@ class OfficeForm extends Component {
                 </Row>
                 <Row className="row_margin">
                     <div className="overview_subtitle">Office Start Date:</div>
-                    <input type="text" className="form-control" ref="companyDate" placeholder="date"></input>
+                    <input type="text" className="form-control" ref="officeDate" placeholder="date"></input>
                 </Row>
                 <Row className="row_margin">
                     <div className="overview_subtitle">Company:</div>
-                    <FormControl componentClass="select" placeholder="select company">
+                    <FormControl componentClass="select" placeholder="select company" inputRef={item => this.inputCompany = item}>
+                        <option value=''>select</option>
                         {this.renderCompanyList()}
                     </FormControl>
                 </Row>
                 <Row className="row_margin">
-                    <input type="submit" className="btn btn-primary overview_button" value="Create"></input>
+                    <input type="submit" className="btn btn-primary overview_button" value="Create" onClick={() => this.onOfficeCreate()}></input>
                 </Row>
             </Col>
         );
@@ -49,4 +74,10 @@ class OfficeForm extends Component {
     }
 }
 
-export default OfficeForm;
+const mapStateToProps = (state) => {
+    const comp = state.comp;
+
+    return { comp }
+}
+
+export default connect(mapStateToProps, { addOffice })(OfficeForm);

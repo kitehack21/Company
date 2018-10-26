@@ -6755,10 +6755,14 @@ button.close {
   }
 }
 .col_company {
-  border-right: 1px solid grey;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-right: 1px solid rgb(185, 185, 185);
 }
 .col_office {
-  border-left: 1px solid grey;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-left: 1px solid rgb(185, 185, 185);
 }
 .row_margin {
   margin-top: 10px;
@@ -6792,6 +6796,57 @@ button.close {
 .location_lon {
   float: right;
   width: 48%;
+}
+.form_to_card_border {
+  border-bottom: 2px solid rgb(185, 185, 185);
+  margin-bottom: 10px;
+}
+.company_card_border {
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.company_card_title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.company_card_delete {
+  float: right;
+  font-size: 20px;
+  color: grey;
+}
+.company_card_delete:hover {
+  color: black;
+}
+.company_card_subtitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+.company_card_text {
+  color: grey;
+}
+.company_card_row {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.company_detail_border {
+  border-bottom: 2px solid rgb(185, 185, 185);
+  margin-bottom: 5px;
+}
+.company_detail_title {
+  font-size: 26px;
+  font-weight: bold;
+}
+.company_detail_subtitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+.company_detail_text {
+  font-size: 18px;
+  color: grey;
+}
+.company_detail_row {
+  margin-bottom: 10px;
 }
 
 

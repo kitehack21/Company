@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import AuthReducer from './AuthReducer';
+import CompanyReducer from './CompanyReducer';
+import OfficeReducer from './OfficeReducer';
 
 export default combineReducers({
-    auth: AuthReducer
+    comp: CompanyReducer,
+    offi: OfficeReducer
 });
