@@ -24,7 +24,7 @@ class OverviewPage extends Component {
             return arrJSX
         } else {
             return (
-                <Col xs={12}>
+                <Col xs={12} style={{'margin-bottom': '50px'}}>
                     <div className="text-center empty_text">There is no companies created yet</div>
                 </Col>
             )

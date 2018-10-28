@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import './react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class DateDropdown extends Component {
     state = { startDate: '' }
@@ -8,7 +8,16 @@ class DateDropdown extends Component {
         this.props.datePick('')
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.reset_date == true) {
+            this.setState({startDate: ''})
+        }
+    }
+
     async handleChange(date) {
+        if (this.props.reset_date == true) {
+            this.props.reset_date_func()
+        }
         await this.setState({ startDate: date });
         if (this.state.startDate == null) {
             this.props.datePick('')

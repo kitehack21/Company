@@ -5,7 +5,7 @@ import { addOffice } from '../actions';
 import { DateDropdown, Notification } from './common';
 
 class OfficeForm extends Component {
-    state = { date: '', error: [], input: [], snackbar: false, Location: {Lat: '', Lon: ''} }
+    state = { date: '', error: [], input: [], snackbar: false, Location: {Lat: '', Lon: ''}, reset_date: false }
 
     componentWillMount() {
         this.setState({ error: [false, false, false, false, false], input: ['', '' ,'' ,'' ,''] })
@@ -17,7 +17,6 @@ class OfficeForm extends Component {
             arrJSX.push(<option value={item.id}>{item.name}</option>)
         })
         return arrJSX;
-
     }
 
     async onOfficeCreate() {
@@ -84,8 +83,11 @@ class OfficeForm extends Component {
     reset() {
         this.inputCompany.value = '';
         this.refs.officeName.value = '';
-        this.refs.officeLocationLat.value = '';
-        this.refs.officeLocationLon.value = '';
+        this.setState({reset_date: true, Location: {Lat: '', Lon: ''}})
+    }
+
+    resetDate() {
+        this.setState({reset_date: false})
     }
 
     // Change the state of the notification (show / hide)
@@ -166,7 +168,7 @@ class OfficeForm extends Component {
                 <Row className="row_margin">
                     <span className="overview_subtitle">Office Start Date:</span>{' '}
                     {this.renderLabel()['Start']()}
-                    <DateDropdown datePick={(temp)=>this.onDatePick(temp)} empty_input={this.state.input[3]}/>
+                    <DateDropdown datePick={(temp)=>this.onDatePick(temp)} empty_input={this.state.input[3]} reset_date={this.state.reset_date} reset_date_func={()=>this.resetDate()}/>
                 </Row>
                 <Row className="row_margin">
                     <span className="overview_subtitle">Company:</span>{' '}

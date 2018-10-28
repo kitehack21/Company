@@ -14,10 +14,10 @@ app.set('view engine' , 'ejs');
 
 //Connect to MySQL database
 const conn = mysql.createConnection({
-    host : '127.0.0.1',
-    user : 'william',
-    password : '0sampai1',
-    database : 'company',
+    host : 'us-cdbr-iron-east-01.cleardb.net',
+    user : 'b8a61b4b410a5d',
+    password : 'f729ad2d',
+    database : 'heroku_5300905ecca37fc',
     port: 3306
     });
 

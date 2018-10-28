@@ -5,7 +5,7 @@ import { addCompany } from '../actions';
 import { Notification, CountryDropdown } from './common';
 
 class CompanyForm extends Component {
-    state = {country_code: '', error: [], input: [], snackbar: false, revenue: '', phone: '' }
+    state = {country_code: '', error: [], input: [], snackbar: false, revenue: '', phone: ''}
 
     componentWillMount() {
         this.setState({ error: [false, false, false, false, false] , input: ['', '', '', '', ''] })
