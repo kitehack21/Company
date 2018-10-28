@@ -56,11 +56,11 @@ Adding other company will display a new card beside the first one
 
 To delete an existing company, click the cross inside an existing company card. Then it will trigger a confirmation pop up to delete the selected company from database.
 
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/deletecompany.png)
 
 To add an office to an existing company, use the Office Form Section (Top Right)
 
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/officeform.png)
 
 Just like the Company Form, the input area of the Office Form will turn red if it is empty when submited.
 
@@ -68,11 +68,11 @@ Just like the Company Form, the input area of the Office Form will turn red if i
 
 Clicking the `Office Start Date` form will display a calendar to choose the date from.
 
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/datedropdown.png)
 
 Clicking the dropdown in the `Company` form will display existing companies.
 
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/companydropdown.png)
 
 After filling all the form in the `Office Form` section and clicking the create button, a notification will be displayed at the bottom left corner of the screen.
 
@@ -82,8 +82,6 @@ To go to the office page, simply click any of the company card. The office page 
 
 If there are no offices created yet, the office card list section will render `There is no offices created yet.`
 
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/emptyoffice.png)
 
 Clicking cross inside the office card will trigger a confirmation pop up to delete the selected office from database.
-
-![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
