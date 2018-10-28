@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, FormControl, Label } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addOffice } from '../actions';
-import DateDropdown from './DateDropdown';
-import Notification from './Notification';
+import { DateDropdown, Notification } from './common';
 
 class OfficeForm extends Component {
     state = { date: '', error: [], input: [], snackbar: false, Location: {Lat: '', Lon: ''} }
@@ -30,7 +29,7 @@ class OfficeForm extends Component {
                 return;
             }
         })
-        if (errIndicator == true) {
+        if (errIndicator === true) {
             return
         } else {
             var data = {
@@ -48,19 +47,19 @@ class OfficeForm extends Component {
 
     checkInput() {
         var checkArr = [false, false, false, false, false]
-        if (this.refs.officeName.value == '') {
+        if (this.refs.officeName.value === '') {
             checkArr[0] = true;
         }
-        if (this.refs.officeLocationLat.value == '') {
+        if (this.refs.officeLocationLat.value === '') {
             checkArr[1] = true;
         }
-        if (this.refs.officeLocationLon.value == '') {
+        if (this.refs.officeLocationLon.value === '') {
             checkArr[2] = true;
         }
-        if (this.state.date == '') {
+        if (this.state.date === '') {
             checkArr[3] = true;
         }
-        if (this.inputCompany.value == '') {
+        if (this.inputCompany.value === '') {
             checkArr[4] = true;
         }
         this.setState({ error: checkArr})
@@ -88,14 +87,14 @@ class OfficeForm extends Component {
                 Latitude: (key) => {
                     const regex = /^[0-9\b]+$/;
                     console.log(key.target.value)
-                    if (key.target.value == '' || regex.test(key.target.value)) {
+                    if (key.target.value === '' || regex.test(key.target.value)) {
                     this.setState({Location: {Lat: key.target.value}})
                     }
                 },
                 Longitude: (key) => {
                     const regex = /^[0-9\b]+$/;
                     console.log(regex.test(key.target.value))
-                    if (key.target.value == '' || regex.test(key.target.value)) {
+                    if (key.target.value === '' || regex.test(key.target.value)) {
                     this.setState({Location: {Lon: key.target.value}})
                     }
                 }
@@ -107,7 +106,7 @@ class OfficeForm extends Component {
         return (
             {
                 Name: () => {
-                    if (this.state.error[0] == true) {
+                    if (this.state.error[0] === true) {
                         this.state.input[0] = 'empty_input'
                         return <Label bsStyle="danger">Please input Name</Label>
                     } else {
@@ -115,13 +114,13 @@ class OfficeForm extends Component {
                     }
                 },
                 Location: () => {
-                    if (this.state.error[1] == true || this.state.error[2] == true) {
-                        if (this.state.error[1] == true) {
+                    if (this.state.error[1] === true || this.state.error[2] === true) {
+                        if (this.state.error[1] === true) {
                             this.state.input[1] = 'empty_input'
                         } else {
                             this.state.input[1] = ''
                         }
-                        if (this.state.error[2] == true) {
+                        if (this.state.error[2] === true) {
                             this.state.input[2] = 'empty_input'
                         } else {
                             this.state.input[2] = ''
@@ -133,7 +132,7 @@ class OfficeForm extends Component {
                     }
                 },
                 Start: () => {
-                    if (this.state.error[3] == true) {
+                    if (this.state.error[3] === true) {
                         this.state.input[3] = 'empty_input'
                         return <Label bsStyle="danger">Please input Start Date</Label>
                     } else {
@@ -141,7 +140,7 @@ class OfficeForm extends Component {
                     }
                 },
                 Company: () => {
-                    if (this.state.error[4] == true) {
+                    if (this.state.error[4] === true) {
                         this.state.input[4] = 'empty_input'
                         return <Label bsStyle="danger">Please Select Company</Label>
                     } else {

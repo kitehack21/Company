@@ -19,4 +19,4 @@ class ConfirmationModal extends React.Component {
   }
 }
 
-export default ConfirmationModal;
+export { ConfirmationModal };

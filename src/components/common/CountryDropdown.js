@@ -20,7 +20,7 @@ class CountryDropdown extends Component {
                 placeholder="code"
                 onChange={this.handleOnChange.bind(this)}
                 inputStyle={{width:'95%', border: `${this.props.empty_input}`}}
-                buttonStyle={{border: `${this.props.empty_input}`}}
+                buttonStyle={{borderLeft: `${this.props.empty_input}`, borderTop: `${this.props.empty_input}`, borderBottom: `${this.props.empty_input}`}}
                 
             />
         );
@@ -28,4 +28,4 @@ class CountryDropdown extends Component {
 }
 
 
-export default CountryDropdown;
+export { CountryDropdown };

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Modal, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { deleteOffice } from '../actions';
-import ConfirmationModal from './ConfirmationModal';
+import { ConfirmationModal } from './common';
 
 class OfficeCard extends Component {
     state = { show: false }

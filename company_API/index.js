@@ -61,7 +61,7 @@ app.delete('/delete_company/:id', function(req, res) {
     var sql = `DELETE FROM companies WHERE id = ${req.params.id}`
     var sql2 = `DELETE FROM offices WHERE company_id = ${req.params.id}`
     var sql3 = `SELECT * FROM companies`
-
+    console.log(sql)
     conn.beginTransaction(function (err) {
         if (err) throw err;
         conn.query(sql, (err, result) => {
@@ -94,7 +94,6 @@ app.delete('/delete_company/:id', function(req, res) {
                         };
                         res.send({companies: result3})
                         console.log("Delete Complete")
-                        conn.end()
                     })
                 })  
             })

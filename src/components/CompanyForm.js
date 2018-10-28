@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Label } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addCompany } from '../actions';
-import CountryDropdown from './common/CountryDropdown';
-import Snackbar from '@material-ui/core/Snackbar';
-import Notification from './common/Notification';
+import { Notification, CountryDropdown } from './common';
 
 class CompanyForm extends Component {
     state = {country_code: '', error: [], input: [], snackbar: false, revenue: '', phone: '' }
@@ -22,7 +20,7 @@ class CompanyForm extends Component {
                 return;
             }
         })
-        if (errIndicator == true) {
+        if (errIndicator === true) {
             return
         } else {
             var data = {
@@ -40,19 +38,19 @@ class CompanyForm extends Component {
 
     checkInput() {
         var checkArr = [false, false, false, false]
-        if (this.refs.companyName.value == '') {
+        if (this.refs.companyName.value === '') {
             checkArr[0] = true;
         }
-        if (this.refs.companyAddress.value == '') {
+        if (this.refs.companyAddress.value === '') {
             checkArr[1] = true;
         }
-        if (this.refs.companyRevenue.value == '') {
+        if (this.refs.companyRevenue.value === '') {
             checkArr[2] = true;
         }
-        if (this.state.country_code == '') {
+        if (this.state.country_code === '') {
             checkArr[3] = true;
         }
-        if (this.refs.companyPhoneNumber.value == '') {
+        if (this.refs.companyPhoneNumber.value === '') {
             checkArr[4] = true;
         }
         this.setState({ error: checkArr})
@@ -78,13 +76,13 @@ class CompanyForm extends Component {
             {
                 Revenue: (key) => {
                     const regex = /^[0-9\b]+$/;
-                    if (key.target.value == '' || regex.test(key.target.value)) {
+                    if (key.target.value === '' || regex.test(key.target.value)) {
                     this.setState({revenue: key.target.value})
                     }
                 },
                 Phone: (key) => {
                     const regex = /^[0-9\b]+$/;
-                    if (key.target.value == '' || regex.test(key.target.value)) {
+                    if (key.target.value === '' || regex.test(key.target.value)) {
                     this.setState({phone: key.target.value})
                     }
                 }
@@ -96,7 +94,7 @@ class CompanyForm extends Component {
         return (
             {
                 Name: () => {
-                    if (this.state.error[0] == true) {
+                    if (this.state.error[0] === true) {
                         this.state.input[0] = 'empty_input'
                         return <Label bsStyle="danger">Please input Name</Label>
                     } else {
@@ -104,7 +102,7 @@ class CompanyForm extends Component {
                     }
                 },
                 Address: () => {
-                    if (this.state.error[1] == true) {
+                    if (this.state.error[1] === true) {
                         this.state.input[1] = 'empty_input'
                         return <Label bsStyle="danger">Please input Address</Label>
                     }
@@ -113,7 +111,7 @@ class CompanyForm extends Component {
                     }
                 },
                 Revenue: () => {
-                    if (this.state.error[2] == true) {
+                    if (this.state.error[2] === true) {
                         this.state.input[2] = 'empty_input'
                         return <Label bsStyle="danger">Please input Revenue</Label>
                     }
@@ -122,13 +120,13 @@ class CompanyForm extends Component {
                     }
                 },
                 Phone: () => {
-                    if (this.state.error[3] == true || this.state.error[4] == true) {
-                        if (this.state.error[3] == true) {
+                    if (this.state.error[3] === true || this.state.error[4] === true) {
+                        if (this.state.error[3] === true) {
                             this.state.input[3] = '2px solid red'
                         } else {
                             this.state.input[3] = ''
                         }
-                        if (this.state.error[4] == true) {
+                        if (this.state.error[4] === true) {
                             this.state.input[4] = 'empty_input'
                         } else {
                             this.state.input[4] = ''

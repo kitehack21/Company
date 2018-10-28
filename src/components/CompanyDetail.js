@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { updateCompanyList } from '../actions';
-import axios from 'axios';
-import { API_URL_1 } from '../supports/api-url/apiurl';
 
 class CompanyDetail extends Component {
     state = { selected_company: [] }
 
     componentWillMount() {
-        if (this.props.comp.companies.length == 0) {
+        if (this.props.comp.companies.length === 0) {
             this.getCompanyList()
         } else {
             this.selectCompany()

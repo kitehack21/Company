@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import '../supports/css/react-datepicker.css';
+import './react-datepicker.css';
 
 class DateDropdown extends Component {
     state = { startDate: '' }
@@ -29,4 +28,4 @@ class DateDropdown extends Component {
     );
   }
 }
-export default DateDropdown;
+export { DateDropdown };

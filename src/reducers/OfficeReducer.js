@@ -1,8 +1,9 @@
+import { GET_OFFICES_SUCCESS } from '../actions/types';
 const INITIAL_STATE = { offices: [] }
 
 export default (state = INITIAL_STATE, action) =>{
     switch(action.type){
-        case "GET_OFFICES_SUCCESS" :
+        case GET_OFFICES_SUCCESS :
             return { offices: action.payload };
         default :   
             return state;

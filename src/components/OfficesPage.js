@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import {API_URL_1} from '../supports/api-url/apiurl'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CompanyDetail from './CompanyDetail';
 import OfficeCard from './OfficeCard';
