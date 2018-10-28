@@ -8,8 +8,8 @@
  > npm install
  ```
  * API: Open another terminal and head to the directory of the API `./company/company_API`. To start the API, 
- ```
  ![alt text](https://github.com/vheres/Company/blob/master/images/node.png)
+ ```
  > node index.js
  ```
 * Using the first terminal, start the React app:
