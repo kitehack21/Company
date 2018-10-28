@@ -87,3 +87,47 @@ If there are no offices created yet, the office card list section will render `T
 Clicking cross inside the office card will trigger a confirmation pop up to delete the selected office from database.
 
 ## System Design
+
+### Overview Page
+
+The overview page is the default page that will be displayed. The general process:
+1. Retrieve company list from database by calling an update action from action creator and save it to global state `comp`
+2. Render the overviewpage, which in turns will call other components (CompanyForm.js, OfficeForm.js and CompanyCard.js)
+3. The component CompanyCard.js will be called multiple times by mapping the global state `comp`.
+
+### CompanyForm.js
+
+General process:
+1. Set state `error` to an array of boolean which represent the input value of the form (false means the input is not empty when submited, while true means the input is empty when submited)
+2. Set state `input` to an array of empty string which represent additional class for the input form (for changing the border of the input form)
+3. Render the company form
+4. After filling the form and clicking the create button, it will run onCompanyCreate() function
+```
+async onCompanyCreate() {
+        await this.checkInput();
+        this.selectClass();
+        var errIndicator = false;
+        this.state.error.map((item, index) => {
+            if (item) {
+                errIndicator = true;
+                return;
+            }
+        })
+        if (errIndicator === true) {
+            return
+        } else {
+            var data = {
+                name: this.refs.companyName.value,
+                address: this.refs.companyAddress.value,
+                revenue: this.refs.companyRevenue.value,
+                code: this.state.country_code,
+                phone: this.refs.companyPhoneNumber.value
+            }
+            this.props.addCompany(data);
+            this.displayNotification();
+            this.reset()
+        }   
+    }
+```
+
+
