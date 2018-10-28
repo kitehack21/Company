@@ -30,7 +30,7 @@ Input new Company
 
 To input a new company, use the company form section
 
-![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/companyform.png)
 
 Clicking `create` without filling the form, the input area will change its border to red and a warning label will be displayed.
 
