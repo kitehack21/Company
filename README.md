@@ -17,6 +17,6 @@
 > npm start
 ```
 * Now the app should be running and could be accessed by opening a browser and go to `http://localhost:3000/`
-
+![alt text](https://github.com/vheres/Company/blob/master/images/overviewpage.png)
 ### How it works
 
