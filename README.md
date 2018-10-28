@@ -95,13 +95,16 @@ The overview page is the default page that will be displayed. The general proces
 2. Render the overviewpage, which in turns will call other components (CompanyForm.js, OfficeForm.js and CompanyCard.js)
 3. The component CompanyCard.js will be called multiple times by mapping the global state `comp`.
 
-### CompanyForm.js
+### CompanyForm.js and OfficeForm.js
+
+Both component has similar process, therefore, only CompanyForm.js will be explained.
 
 General process:
 1. Set state `error` to an array of boolean which represent the input value of the form (false means the input is not empty when submited, while true means the input is empty when submited)
 2. Set state `input` to an array of empty string which represent additional class for the input form (for changing the border of the input form)
 3. Render the company form
 4. After filling the form and clicking the create button, it will run onCompanyCreate() function
+
 ```
 async onCompanyCreate() {
         await this.checkInput();
@@ -127,6 +130,62 @@ async onCompanyCreate() {
             this.displayNotification();
             this.reset()
         }   
+    }
+```
+
+First, it will check all the input form and change the state of `error` to true if there is any empty form.
+
+```
+checkInput() {
+        var checkArr = [false, false, false, false, false]
+        if (this.refs.companyName.value === '') {
+            checkArr[0] = true;
+        }
+        if (this.refs.companyAddress.value === '') {
+            checkArr[1] = true;
+        }
+        if (this.refs.companyRevenue.value === '') {
+            checkArr[2] = true;
+        }
+        if (this.state.country_code === '') {
+            checkArr[3] = true;
+        }
+        if (this.refs.companyPhoneNumber.value === '') {
+            checkArr[4] = true;
+        }
+        this.setState({ error: checkArr})
+    }
+```
+
+Second, it will change the state of `input`, based on the state of `error`
+
+```
+selectClass() {
+        var inputArr = this.state.input.slice()
+        this.state.error.map((item, index) => {
+            if (this.state.error[index] == true && index != 3) {
+                inputArr[index] = 'empty_input'
+            } else if (this.state.error[index] == true && index == 3) {
+                inputArr[index] = '2px solid red'
+            } else {
+                inputArr[index] = ''
+            }
+        })
+        this.setState({input: inputArr})
+    }
+```
+
+Third, if there is any error, it will execute `return` from the function, thus the creating process will be canceled and re-render will take place. Because of this, any input form that was empty will receive new class which will change its border to red.
+
+Fourth, if there is no error, it will continue the creating process and call an action from the action creator with all the input-form's value as the parameter.
+
+Fifth, all the input form will be reset to empty.
+
+```
+reset() {
+        this.refs.companyName.value = '';
+        this.refs.companyAddress.value = '';
+        this.setState({revenue: '', phone: ''})
     }
 ```
 
