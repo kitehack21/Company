@@ -23,8 +23,9 @@ In the overview page above, there are 3 sections:
 * Company Form (Top Left)
 * Office Form (Top Right)
 * Company Card List (Bottom)
-If there are no companies created yet (as shown above), the company card list section will render 'There is no companies created yet'.
-Input new Company
+<br/>
+If there are no companies created yet (as shown above), the company card list section will render 'There is no companies created yet'.<br/>
+Input new Company<br/>
 To input a new company, use the company form section<br/>
 ![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)<br/>
 If you click `create` without filling the form, the input area will change its border to red and a warning label will be displayed.<br/>
