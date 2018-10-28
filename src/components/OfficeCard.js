@@ -7,10 +7,12 @@ import { ConfirmationModal } from './common';
 class OfficeCard extends Component {
     state = { show: false }
 
+    // change the state of the modal (show/hide)
     handleClose() {
         this.setState({ show: false });
       }
     
+      // change the state of the modal (show/hide)
     handleShow() {
         this.setState({ show: true });
     }

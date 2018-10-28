@@ -10,7 +10,7 @@ class OfficeForm extends Component {
     componentWillMount() {
         this.setState({ error: [false, false, false, false, false], input: ['', '' ,'' ,'' ,''] })
     }
-    
+
     renderCompanyList() {
         var arrJSX = [];
         this.props.comp.companies.map((item, index) => {
@@ -22,6 +22,7 @@ class OfficeForm extends Component {
 
     async onOfficeCreate() {
         await this.checkInput();
+        this.selectClass();
         var errIndicator = false;
         this.state.error.map((item, index) => {
             if (item) {
@@ -45,6 +46,7 @@ class OfficeForm extends Component {
         }      
     }
 
+    // Check for empty input and change the error state
     checkInput() {
         var checkArr = [false, false, false, false, false]
         if (this.refs.officeName.value === '') {
@@ -65,6 +67,20 @@ class OfficeForm extends Component {
         this.setState({ error: checkArr})
     }
 
+    // Select the class for the input form based on the error state
+    selectClass() {
+        var inputArr = this.state.input.slice()
+        this.state.error.map((item, index) => {
+            if (this.state.error[index] == true) {
+                inputArr[index] = 'empty_input'
+            } else {
+                inputArr[index] = ''
+            }
+        })
+        this.setState({input: inputArr})
+    }
+
+    // Reset the input form after create action
     reset() {
         this.inputCompany.value = '';
         this.refs.officeName.value = '';
@@ -72,11 +88,13 @@ class OfficeForm extends Component {
         this.refs.officeLocationLon.value = '';
     }
 
+    // Change the state of the notification (show / hide)
     displayNotification() {
         this.setState({snackbar: true})
         setTimeout(()=>this.setState({snackbar: false}), 3000);
     }
 
+    // Save the value of the date from child component to local state
     onDatePick(temp) {
         this.setState({date: temp})
     }
@@ -85,73 +103,50 @@ class OfficeForm extends Component {
         return (
             {
                 Latitude: (key) => {
-                    const regex = /^[0-9\b]+$/;
-                    console.log(key.target.value)
+                    const regex = /^[-+]?\d*(\.\d*)?$/;
                     if (key.target.value === '' || regex.test(key.target.value)) {
-                    this.setState({Location: {Lat: key.target.value}})
+                    this.setState({Location: {...this.state.Location, Lat: key.target.value}})
                     }
                 },
                 Longitude: (key) => {
-                    const regex = /^[0-9\b]+$/;
-                    console.log(regex.test(key.target.value))
+                    const regex = /^[-+]?\d*(\.\d*)?$/;
                     if (key.target.value === '' || regex.test(key.target.value)) {
-                    this.setState({Location: {Lon: key.target.value}})
+                    this.setState({Location: {...this.state.Location, Lon: key.target.value}})
                     }
                 }
             }
         )
     }
 
+    // render warning label based on the error state
     renderLabel() {
         return (
             {
                 Name: () => {
                     if (this.state.error[0] === true) {
-                        this.state.input[0] = 'empty_input'
                         return <Label bsStyle="danger">Please input Name</Label>
-                    } else {
-                        this.state.input[0] = ''
                     }
                 },
                 Location: () => {
                     if (this.state.error[1] === true || this.state.error[2] === true) {
-                        if (this.state.error[1] === true) {
-                            this.state.input[1] = 'empty_input'
-                        } else {
-                            this.state.input[1] = ''
-                        }
-                        if (this.state.error[2] === true) {
-                            this.state.input[2] = 'empty_input'
-                        } else {
-                            this.state.input[2] = ''
-                        }
                         return <Label bsStyle="danger">Please input Location</Label>
-                    } else {
-                        this.state.input[1] = ''
-                        this.state.input[2] = ''
                     }
                 },
                 Start: () => {
                     if (this.state.error[3] === true) {
-                        this.state.input[3] = 'empty_input'
                         return <Label bsStyle="danger">Please input Start Date</Label>
-                    } else {
-                        this.state.input[3] = ''
                     }
                 },
                 Company: () => {
                     if (this.state.error[4] === true) {
-                        this.state.input[4] = 'empty_input'
                         return <Label bsStyle="danger">Please Select Company</Label>
-                    } else {
-                        this.state.input[4] = ''
                     }
                 }
             }
         )
     }
 
-    renderHomePage() {
+    renderOfficeForm() {
         return(
             <Col xs={6} className="col_office">
                 <Row>
@@ -191,7 +186,7 @@ class OfficeForm extends Component {
 
     render() {
         return (
-        this.renderHomePage()
+        this.renderOfficeForm()
         );   
     }
 }

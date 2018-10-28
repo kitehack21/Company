@@ -14,10 +14,12 @@ class CompanyDetail extends Component {
         }
     }
 
+    // Called when the global state is empty (refresh page)
     getCompanyList() {
         this.props.updateCompanyList();
     }
 
+    // Called after getCompanyList()
     componentWillReceiveProps(newProps) {
         newProps.comp.companies.map((item, index) => {
             if (item.id == this.props.company_id) {

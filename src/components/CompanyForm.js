@@ -13,6 +13,7 @@ class CompanyForm extends Component {
 
     async onCompanyCreate() {
         await this.checkInput();
+        this.selectClass();
         var errIndicator = false;
         this.state.error.map((item, index) => {
             if (item) {
@@ -36,8 +37,9 @@ class CompanyForm extends Component {
         }   
     }
 
+    // Check for empty input and change the error state
     checkInput() {
-        var checkArr = [false, false, false, false]
+        var checkArr = [false, false, false, false, false]
         if (this.refs.companyName.value === '') {
             checkArr[0] = true;
         }
@@ -56,17 +58,35 @@ class CompanyForm extends Component {
         this.setState({ error: checkArr})
     }
 
+    // Select the class for the input form based on the error state
+    selectClass() {
+        var inputArr = this.state.input.slice()
+        this.state.error.map((item, index) => {
+            if (this.state.error[index] == true && index != 3) {
+                inputArr[index] = 'empty_input'
+            } else if (this.state.error[index] == true && index == 3) {
+                inputArr[index] = '2px solid red'
+            } else {
+                inputArr[index] = ''
+            }
+        })
+        this.setState({input: inputArr})
+    }
+
+    // Reset the input form after create action
     reset() {
         this.refs.companyName.value = '';
         this.refs.companyAddress.value = '';
         this.setState({revenue: '', phone: ''})
     }
 
+    // Change the state of the notification (show / hide)
     displayNotification() {
         this.setState({snackbar: true})
         setTimeout(()=>this.setState({snackbar: false}), 3000);
     }
 
+    // Save the value of the country code from child component to local state
     onCountryPick(code) {
         this.setState({ country_code: code})
     }
@@ -90,60 +110,35 @@ class CompanyForm extends Component {
         )
     }
 
+    // render warning label based on the error state
     renderLabel() {
         return (
             {
                 Name: () => {
                     if (this.state.error[0] === true) {
-                        this.state.input[0] = 'empty_input'
                         return <Label bsStyle="danger">Please input Name</Label>
-                    } else {
-                        this.state.input[0] = ''
                     }
                 },
                 Address: () => {
                     if (this.state.error[1] === true) {
-                        this.state.input[1] = 'empty_input'
                         return <Label bsStyle="danger">Please input Address</Label>
-                    }
-                    else {
-                        this.state.input[1] = ''
                     }
                 },
                 Revenue: () => {
                     if (this.state.error[2] === true) {
-                        this.state.input[2] = 'empty_input'
                         return <Label bsStyle="danger">Please input Revenue</Label>
-                    }
-                    else {
-                        this.state.input[2] = ''
                     }
                 },
                 Phone: () => {
                     if (this.state.error[3] === true || this.state.error[4] === true) {
-                        if (this.state.error[3] === true) {
-                            this.state.input[3] = '2px solid red'
-                        } else {
-                            this.state.input[3] = ''
-                        }
-                        if (this.state.error[4] === true) {
-                            this.state.input[4] = 'empty_input'
-                        } else {
-                            this.state.input[4] = ''
-                        }
-                        
                         return <Label bsStyle="danger">Please input Code & Phone Number</Label>
-                    }
-                    else {
-                        this.state.input[3] = ''
-                        this.state.input[4] = ''
                     }
                 }
             }
         )
     }
 
-    renderHomePage() {
+    renderCompanyForm() {
         return(
             <Col xs={6} className="col_company">
                 <Row>
@@ -186,7 +181,7 @@ class CompanyForm extends Component {
 
     render() {
         return (
-        this.renderHomePage()
+        this.renderCompanyForm()
         );   
     }
 }
