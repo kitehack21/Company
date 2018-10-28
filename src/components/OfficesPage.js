@@ -17,19 +17,36 @@ class OfficesPage extends Component {
         this.props.history.push(`/`);
     }
 
+    renderOfficeCard() {
+        if (this.props.offi.offices.length !== 0) {
+            var arrJSX = [];
+            this.props.offi.offices.map((item, count) => {
+                arrJSX.push(<OfficeCard item={item} company_id={this.props.match.params.id}/>)
+            })
+            return arrJSX;
+        } else {
+            return (
+                <Col xs={12}>
+                    <div className="text-center empty_text">There is no offices created yet</div>
+                </Col>
+            )
+        }
+        
+    }
+
     renderHomePage() {
         return(
             <Grid fluid>
                 <Row>
-                    <Col xsOffset={3} xs={6}>
-                        <Row className="form_to_card_border">
+                    <Col xsOffset={0} xs={12} lgOffset={3} lg={6} className="page_border">
+                        <Row className="form_to_card_border office_page_detail">
                             <CompanyDetail company_id={this.props.match.params.id} pushPage={()=>this.onLinkClick()}/>
                         </Row>
                         <Row style={{'margin-bottom': '10px'}}>
                             <span style={{'font-size': '26px', 'margin-left': '10px'}}>OFFICES</span>
                         </Row>
                         <Row>
-                            <OfficeCard company_id={this.props.match.params.id}/>
+                            {this.renderOfficeCard()}
                         </Row>
                     </Col>
                 </Row>

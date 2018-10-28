@@ -18,11 +18,28 @@ class OverviewPage extends Component {
         this.props.history.push(`/office/${id}`)
     }
 
+    renderCompanyCard() {
+        if (this.props.comp.companies.length !== 0) {
+            var arrJSX = [];
+            this.props.comp.companies.map((item, count) => {
+                arrJSX.push(<CompanyCard item={item} pushPage={(id)=>this.onLinkClick(id)}/>)
+            })
+            return arrJSX
+        } else {
+            return (
+                <Col xs={12}>
+                    <div className="text-center empty_text">There is no companies created yet</div>
+                </Col>
+            )
+        }
+        
+    }
+
     renderHomePage() {
         return(
             <Grid fluid>
                 <Row>
-                    <Col xsOffset={3} xs={6}>
+                    <Col xsOffset={0} xs={12} lgOffset={3} lg={6} className="page_border">
                         <Row className="form_to_card_border">
                             <CompanyForm />
                             <OfficeForm />
@@ -31,7 +48,7 @@ class OverviewPage extends Component {
                             <span style={{'font-size': '26px', 'margin-left': '10px'}}>COMPANIES</span>
                         </Row>
                         <Row>
-                            <CompanyCard pushPage={(id)=>this.onLinkClick(id)}/>
+                            {this.renderCompanyCard()}
                         </Row>
                     </Col>
                 </Row>

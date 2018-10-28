@@ -6754,6 +6754,12 @@ button.close {
     display: none !important;
   }
 }
+.page_border {
+  margin-top: 10px;
+  border : 2px solid rgb(185, 185, 185);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .col_company {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -6787,7 +6793,7 @@ button.close {
 }
 .phone_number {
   float: right;
-  width: 80%;
+  width: 100%;
 }
 .location_lat {
   float: left;
@@ -6804,6 +6810,7 @@ button.close {
 .company_card_border {
   border: 1px solid grey;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .company_card_title {
   font-size: 20px;
@@ -6845,8 +6852,23 @@ button.close {
   font-size: 18px;
   color: grey;
 }
+.office_page_detail {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .company_detail_row {
   margin-bottom: 10px;
+}
+.no-padding {
+  padding: 0px;
+}
+.empty_text {
+  font-size: 32px;
+  color: rgb(185, 185, 185);
+}
+.empty_input {
+  border: 2px solid red;
 }
 
 

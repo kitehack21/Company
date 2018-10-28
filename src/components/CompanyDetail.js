@@ -1,12 +1,35 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addCompany } from '../actions';
+import { updateCompanyList } from '../actions';
+import axios from 'axios';
+import { API_URL_1 } from '../supports/api-url/apiurl';
 
 class CompanyDetail extends Component {
     state = { selected_company: [] }
 
     componentWillMount() {
+        if (this.props.comp.companies.length == 0) {
+            this.getCompanyList()
+        } else {
+            this.selectCompany()
+        }
+    }
+
+    getCompanyList() {
+        this.props.updateCompanyList();
+    }
+
+    componentWillReceiveProps(newProps) {
+        newProps.comp.companies.map((item, index) => {
+            if (item.id == this.props.company_id) {
+                this.setState({selected_company: item})
+            }
+        })
+    }
+
+    selectCompany() {
+        console.log(this.props.comp.companies)
         this.props.comp.companies.map((item, index) => {
             if (item.id == this.props.company_id) {
                 this.setState({selected_company: item})
@@ -34,7 +57,7 @@ class CompanyDetail extends Component {
                         ({this.state.selected_company.code}) {this.state.selected_company.phone}
                     </span>
                     <span className="pull-right">
-                        <input type="button" className="btn btn-primary" value="Back to Overview" onClick={() => this.props.pushPage()}></input>
+                        <input type="button" className="btn btn-default" value="Back to Overview" onClick={() => this.props.pushPage()}></input>
                     </span>
                 </Row>
             </Col>
@@ -50,8 +73,8 @@ class CompanyDetail extends Component {
 
 const mapStateToProps = (state) => {
     const { comp, offi } = state;
-
+    console.log(state.comp)
     return { comp, offi }
 }
 
-export default connect(mapStateToProps, {})(CompanyDetail);
+export default connect(mapStateToProps, { updateCompanyList })(CompanyDetail);

@@ -59,12 +59,45 @@ app.post('/add_office', function(req, res) {
 
 app.delete('/delete_company/:id', function(req, res) {
     var sql = `DELETE FROM companies WHERE id = ${req.params.id}`
-    var sql2 = `SELECT * FROM companies`
-    conn.query(sql, (err, result) => {
+    var sql2 = `DELETE FROM offices WHERE company_id = ${req.params.id}`
+    var sql3 = `SELECT * FROM companies`
+
+    conn.beginTransaction(function (err) {
         if (err) throw err;
-        conn.query(sql2, (err2, result2) => {
-            if (err2) throw err2;
-            res.send({companies: result2})
+        conn.query(sql, (err, result) => {
+            if (err) {
+                conn.rollback(function() {
+                    console.log("Rollback 1 Successful");
+                    throw err;
+                })
+            };
+            conn.query(sql2, (err2, result2) => {
+                if (err2) {
+                    conn.rollback(function() {
+                        console.log("Rollback 2 Successful");
+                        throw err2;
+                    })
+                };
+                conn.query(sql3, (err3, result3) => {
+                    if (err3) {
+                        conn.rollback(function() {
+                            console.log("Rollback 3 Successful");
+                            throw err3;
+                        })
+                    };
+                    conn.commit(function(err) {
+                        if (err) {
+                            conn.rollback(function() {
+                                console.log("Rollback 4 Successful");
+                                throw err;
+                            })
+                        };
+                        res.send({companies: result3})
+                        console.log("Delete Complete")
+                        conn.end()
+                    })
+                })  
+            })
         })
     })
 })
