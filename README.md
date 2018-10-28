@@ -26,11 +26,11 @@
 If there are no companies created yet (as shown above), the company card list section will render 'There is no companies created yet'.
 2. Input new Company
 To input a new company, use the company form section
-![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)<br/>
 If you click `create` without filling the form, the input area will change its border to red and a warning label will be displayed.
-![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/emptyinput.png)<br/>
 If you fill one of the input form and click `create`, the input area with a value will remove both the red border and the warning label.
-![alt text](https://github.com/vheres/Company/blob/master/images/input1.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/input1.png)<br/>
 When clicking the dropdown on the `Phone No` section, a selection of country code will be displayed.
-![alt text](https://github.com/vheres/Company/blob/master/images/countrycode.png)
+![alt text](https://github.com/vheres/Company/blob/master/images/countrycode.png)<br/>
 > Revenue, country code, and phone number only accept positive integer
