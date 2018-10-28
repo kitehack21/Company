@@ -45,3 +45,11 @@ When clicking the dropdown on the `Phone No` section, a selection of country cod
 ![alt text](https://github.com/vheres/Company/blob/master/images/countrycode.png)
 
 > Revenue, country code, and phone number only accept positive integer
+
+After filling up the form properly and click create button, a notification will be displayed at the bottom left corner of the screen and a new company card will be displayed in the company card list section
+
+![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany.png)
+
+Adding other company will display a new card beside the first one
+
+![alt text](https://github.com/vheres/Company/blob/master/images/insertcompany2.png)
