@@ -1,6 +1,6 @@
 ## Code Challenge | Prospace
 >The skeleton of this project was setup with **[create-react-app](https://github.com/facebook/create-react-app)**.
-### Compiling Guide
+## Compiling Guide
 >Make sure that your system has Node.js installed
 
 * After cloning the repository from GitHub, Open the directory `./company` in a terminal, and install all the dependencies:
@@ -18,7 +18,7 @@
 ```
 * Now the app should be running and could be accessed by opening a browser and go to `http://localhost:3000/`
 ![alt text](https://github.com/vheres/Company/blob/master/images/overviewpage.png)
-### Features
+## Features
 In the overview page above, there are 3 sections:
 * Company Form (Top Left)
 * Office Form (Top Right)
@@ -86,4 +86,4 @@ If there are no offices created yet, the office card list section will render `T
 
 Clicking cross inside the office card will trigger a confirmation pop up to delete the selected office from database.
 
-### System Design
+## System Design
