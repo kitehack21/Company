@@ -189,4 +189,56 @@ reset() {
     }
 ```
 
+### CompanyCard.js and OfficeCard.js
+
+Both components works similarly, so only CompanyCard.js will be explained.
+
+General Process:
+1. When CompanyCard.js is being called, it receive two props from its parent, an object named `item` and a function named `pushPage`
+2. the props `item` holds the information of a company, while `pushPage` is a function to change page to OfficePage.js with the company-id as parameter.
+3. Using the information inside `item`, it will render the information given to form a company card.
+4. There is a common component, ConfirmationModal.js that is being used inside CompanyCard.js. When the cross at the top right corner of the card is clicked, it will change the state of the modal to become visible. Accordingly, if the delete button inside the modal is clicked, it will call an action to delete the company and its offices from the database based on the company id.
+
+### Office Page
+
+Office page is the second page of this project. The general process:
+1. componentWillMount() call an action to retrieve office list from database and save it in a global state `offi`.
+2. During render process, there are two components that are called, CompanyDetail.js and OfficeCard.js
+3. CompanyDetail.js receives two props from OfficePage.js when called, `company_id` and `pushPage`. the value of `company_id` is retrieved from URL `this.props.match.params.id`.
+4. For OfficeCard.js (render office card by mapping global state `offi`), see CompanyCard.js section.
+
+### CompanyDetail.js
+
+General Process:
+1. It will check whether the global state `comp` is empty or not.
+2. If `comp` is not empty, it will push the selected company to a local state `selected_company`
+
+```
+selectCompany() {
+        console.log(this.props.comp.companies)
+        this.props.comp.companies.map((item, index) => {
+            if (item.id == this.props.company_id) {
+                this.setState({selected_company: item})
+            }
+        })
+    }
+```
+3. If `comp` is empty, it will call a function to retrieve the company list and once again save it to global state `comp`. Then, componentWillReceiveProps will be triggered, which in accordance will push the selected company to a local state `selected_company`
+
+```
+getCompanyList() {
+        this.props.updateCompanyList();
+    }
+
+    componentWillReceiveProps(newProps) {
+        newProps.comp.companies.map((item, index) => {
+            if (item.id == this.props.company_id) {
+                this.setState({selected_company: item})
+            }
+        })
+    }
+```
+
+4. Then using the information inside the local state `selected_company`, it will render the company detail.
+
 
