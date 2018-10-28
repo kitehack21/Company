@@ -18,7 +18,7 @@
 ```
 * Now the app should be running and could be accessed by opening a browser and go to `http://localhost:3000/`
 ![alt text](https://github.com/vheres/Company/blob/master/images/overviewpage.png)
-### How it works
+### Features
 In the overview page above, there are 3 sections:
 * Company Form (Top Left)
 * Office Form (Top Right)
@@ -85,3 +85,5 @@ If there are no offices created yet, the office card list section will render `T
 ![alt text](https://github.com/vheres/Company/blob/master/images/emptyoffice.png)
 
 Clicking cross inside the office card will trigger a confirmation pop up to delete the selected office from database.
+
+### System Design
