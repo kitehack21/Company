@@ -7,12 +7,15 @@
  ```
  > npm install
  ```
- * API: Open another terminal and head to the directory of the API `./company/company_API`. To start the API, 
- ![alt text](https://github.com/vheres/Company/blob/master/images/node.png)
+ * The database of this project is hosted in heroku server with clearDB addons. however, because it uses the free option, the server will be automatically turned off if inactive. So, instead of running the API with `node`, please install module `forever` to make sure that it will run continuously.
  ```
- > node index.js
+ > npm install forever -g
  ```
-* Using the first terminal, start the React app:
+ * Then, Head to the API directory `./company/company_API` and run the following command
+ ```
+ > forever start index.js
+ ```
+* Using another terimal in `./company` directory, start the React app:
 ```
 > npm start
 ```
